@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Conference extends Model {
 	use HasFactory;
-	
+
 
 	/**
 	 * The attributes that should be cast to native types.
