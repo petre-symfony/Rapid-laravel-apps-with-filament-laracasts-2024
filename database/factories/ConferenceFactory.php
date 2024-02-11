@@ -26,7 +26,7 @@ class ConferenceFactory extends Factory {
 			'end_date' => $this->faker->dateTime(),
 			'status' => $this->faker->word(),
 			'region' => $this->faker->word(),
-			'venue_id' => Venue::factory(),
+			'venue_id' => null
 		];
 	}
 }
