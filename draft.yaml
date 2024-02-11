@@ -1,5 +1,16 @@
 models:
-  # ...
+  Conference:
+    name: string
+    description: string
+    start_date: datetime
+    end_date: datetime
+    status: string
+    region: string
+    venue_id: unsignedInteger
 
-controllers:
-  # ...
+  Venue:
+    name: string
+    city: string
+    county: string
+    postal_code: string
+
