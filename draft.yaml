@@ -7,10 +7,29 @@ models:
     status: string
     region: string
     venue_id: unsignedInteger
+    relationships:
+      belongsTo: Venue
+      belongsToMany: Speaker, Talk
 
   Venue:
     name: string
     city: string
     county: string
     postal_code: string
+    relationships:
+      hasMany: Conference
 
+  Speaker:
+    name: string
+    email: string
+    bio: text
+    twitter_handle: string
+    relationships:
+      belongsToMany: Conference
+
+  Talk:
+    title: string
+    abstract: text
+    relationships:
+      belongsTo: Speaker
+      belongsToMany: Conference
