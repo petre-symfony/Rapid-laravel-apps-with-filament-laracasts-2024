@@ -9,21 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Conference extends Model {
 	use HasFactory;
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = [
-		'name',
-		'description',
-		'start_date',
-		'end_date',
-		'status',
-		'region',
-		'venue_id',
-	];
+	
 
 	/**
 	 * The attributes that should be cast to native types.
