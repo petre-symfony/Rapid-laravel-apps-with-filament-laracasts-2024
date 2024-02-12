@@ -29,6 +29,7 @@ class ConferenceResource extends Resource {
 					->maxLength(60),
 				Forms\Components\RichEditor::make('description')
 					->required()
+					->disableToolbarButtons(['italic'])
 					->maxLength(255),
 				Forms\Components\DateTimePicker::make('start_date')
 					->required(),
