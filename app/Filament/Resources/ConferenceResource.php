@@ -32,8 +32,10 @@ class ConferenceResource extends Resource {
 					->required()
 					->maxLength(255),
 				Forms\Components\DatePicker::make('start_date')
+					->native(false)
 					->required(),
 				Forms\Components\DateTimePicker::make('end_date')
+					->native(false)
 					->required(),
 				Forms\Components\TextInput::make('status')
 					->required()
