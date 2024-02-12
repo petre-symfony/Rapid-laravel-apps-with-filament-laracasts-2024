@@ -31,7 +31,7 @@ class ConferenceResource extends Resource {
 					->helperText('Markdown')
 					->required()
 					->maxLength(255),
-				Forms\Components\DateTimePicker::make('start_date')
+				Forms\Components\DatePicker::make('start_date')
 					->required(),
 				Forms\Components\DateTimePicker::make('end_date')
 					->required(),
