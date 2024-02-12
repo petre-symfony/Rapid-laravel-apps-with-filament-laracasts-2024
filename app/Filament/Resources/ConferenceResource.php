@@ -39,9 +39,13 @@ class ConferenceResource extends Resource {
 					->required(),
 				Forms\Components\Checkbox::make('is_published')
 					->default(true),
-				Forms\Components\TextInput::make('status')
-					->required()
-					->maxLength(255),
+				Forms\Components\Select::make('status')
+					->options([
+						'draft' => 'Draft',
+						'published' => 'Published',
+						'archived' => 'Archived'
+					])
+					->required(),
 				Forms\Components\TextInput::make('region')
 					->required()
 					->maxLength(255),
