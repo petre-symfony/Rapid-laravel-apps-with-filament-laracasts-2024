@@ -22,10 +22,11 @@ class ConferenceResource extends Resource {
 		return $form
 			->schema([
 				Forms\Components\TextInput::make('website')
-					->label('Conference')
+					->label('Website')
 					->url()
-					->prefix('https://')
+					->prefixIcon('heroicon-o-globe-alt')
 					->helperText('The name of the conference')
+					->suffix('.com')
 					->required()
 					->maxLength(60),
 				Forms\Components\TextInput::make('description')
