@@ -27,9 +27,9 @@ class ConferenceResource extends Resource {
 					->helperText('The name of the conference')
 					->required()
 					->maxLength(60),
-				Forms\Components\RichEditor::make('description')
+				Forms\Components\MarkdownEditor::make('description')
+					->helperText('Markdown')
 					->required()
-					->toolbarButtons(['h2', 'bold'])
 					->maxLength(255),
 				Forms\Components\DateTimePicker::make('start_date')
 					->required(),
