@@ -23,6 +23,8 @@ class ConferenceResource extends Resource {
 			->schema([
 				Forms\Components\TextInput::make('name')
 					->label('Conference')
+					->hint('Here is the hint')
+					->hintIcon('heroicon-o-rectangle-stack')
 					->helperText('The name of the conference')
 					->required()
 					->maxLength(60),
