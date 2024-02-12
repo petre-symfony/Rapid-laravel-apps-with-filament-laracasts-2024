@@ -23,7 +23,8 @@ class ConferenceResource extends Resource {
 			->schema([
 				Forms\Components\TextInput::make('name')
 					->label('Conference')
-					//->required()
+					->required()
+					->markAsRequired(false)
 					->maxLength(255),
 				Forms\Components\TextInput::make('description')
 					->required()
