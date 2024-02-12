@@ -23,8 +23,9 @@ class ConferenceResource extends Resource {
 			->schema([
 				Forms\Components\TextInput::make('name')
 					->label('Conference')
+					->helperText('The name of the conference')
 					->required()
-					->rules(['max:60', new Custom]),
+					->maxLength(60),
 				Forms\Components\TextInput::make('description')
 					->required()
 					->maxLength(255),
