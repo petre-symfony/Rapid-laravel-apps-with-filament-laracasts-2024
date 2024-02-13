@@ -52,6 +52,7 @@ class ConferenceResource extends Resource {
 					->options(Region::class),
 				Forms\Components\Select::make('venue_id')
 					->searchable()
+					->preload()
 					->relationship(
 						'venue',
 						'name',
