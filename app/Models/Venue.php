@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\Region;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,5 +19,25 @@ class Venue extends Model {
 
 	public function conferences(): HasMany {
 		return $this->hasMany(Conference::class);
+	}
+
+	public static function getForm() {
+		return [
+			TextInput::make('name')
+				->required()
+				->maxLength(255),
+			TextInput::make('city')
+				->required()
+				->maxLength(255),
+			TextInput::make('county')
+				->required()
+				->maxLength(255),
+			TextInput::make('postal_code')
+				->required()
+				->maxLength(255),
+			Select::make('region')
+				->enum(Region::class)
+				->options(Region::class)
+		];
 	}
 }
