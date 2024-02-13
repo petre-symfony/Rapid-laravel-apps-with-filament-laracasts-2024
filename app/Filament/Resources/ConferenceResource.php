@@ -55,6 +55,8 @@ class ConferenceResource extends Resource {
 						'venue',
 						'name',
 						modifyQueryUsing: function (Builder $query) {
+							ray('hello');
+
 							$query->where('region', Region::US);
 						}),
 			]);
