@@ -47,6 +47,7 @@ class ConferenceResource extends Resource {
 					])
 					->required(),
 				Forms\Components\Select::make('region')
+					->live()
 					->enum(Region::class)
 					->options(Region::class),
 				Forms\Components\Select::make('venue_id')
