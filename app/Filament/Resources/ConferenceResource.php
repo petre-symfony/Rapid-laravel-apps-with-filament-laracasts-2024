@@ -51,6 +51,7 @@ class ConferenceResource extends Resource {
 					->enum(Region::class)
 					->options(Region::class),
 				Forms\Components\Select::make('venue_id')
+					->searchable()
 					->relationship(
 						'venue',
 						'name',
