@@ -64,6 +64,15 @@ class ConferenceResource extends Resource {
 
 							$query->where('region', $get('region'));
 						}),
+				Forms\Components\CheckboxList::make('speakers')
+					->relationship('speakers', 'name')
+					->options(
+						SpeakerResource::getModel()::query
+							->withoutGlobalScope(SoftDeletingScope::class)
+							->get()
+							->mapWithKeys(fn ($speaker) => [$speaker->id => $speaker->name])
+					)
+					->required()
 			]);
 	}
 
