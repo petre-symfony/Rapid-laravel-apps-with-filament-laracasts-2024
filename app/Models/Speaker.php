@@ -53,6 +53,10 @@ class Speaker extends Model {
 					'open-source' => 'Open Source Creater / Maintainer',
 					'unique-perspective' => 'Unique Perspective'
 				])
+				->descriptions([
+					'business-leader' => 'Here is a nice long description',
+					'charisma' => 'This is even more information about why you should pick this one'
+				])
 				->columns(3)
 		];
 	}
