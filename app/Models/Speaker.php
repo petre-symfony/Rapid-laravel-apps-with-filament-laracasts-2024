@@ -38,6 +38,7 @@ class Speaker extends Model {
 				->required()
 				->maxLength(255),
 			CheckboxList::make('qualifications')
+				->columnSpanFull()
 				->options([
 					'business-leader' => 'Business Leader',
 					'charisma' => 'Charismatic Speaker',
@@ -50,6 +51,7 @@ class Speaker extends Model {
 					'open-source' => 'Open Source Creater / Maintainer',
 					'unique-perspective' => 'Unique Perspective'
 				])
+				->columns(3)
 		];
 	}
 }
