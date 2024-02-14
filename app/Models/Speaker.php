@@ -39,6 +39,7 @@ class Speaker extends Model {
 				->maxLength(255),
 			CheckboxList::make('qualifications')
 				->columnSpanFull()
+				->searchable()
 				->options([
 					'business-leader' => 'Business Leader',
 					'charisma' => 'Charismatic Speaker',
