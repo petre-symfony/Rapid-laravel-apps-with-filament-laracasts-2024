@@ -45,15 +45,17 @@ class Conference extends Model {
 	public static function getForm(): array {
 		return [
 			Section::make('Conference Details')
+				->columns(2)
 				->schema(
 					[
 						TextInput::make('name')
+							->columnSpanFull()
 							->label('Conference')
 							->default('My Conference')
-							->helperText('The name of the conference')
 							->required()
 							->maxLength(60),
 						MarkdownEditor::make('description')
+							->columnSpan(2)
 							->helperText('Markdown')
 							->required(),
 						DateTimePicker::make('start_date')
