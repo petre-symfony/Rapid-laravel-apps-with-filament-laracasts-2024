@@ -6,6 +6,7 @@ use App\Enums\Region;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Filament\Resources\ConferenceResource\RelationManagers;
 use App\Models\Conference;
+use App\Models\Speaker;
 use App\Models\Venue;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -67,10 +68,7 @@ class ConferenceResource extends Resource {
 				Forms\Components\CheckboxList::make('speakers')
 					->relationship('speakers', 'name')
 					->options(
-						SpeakerResource::getModel()::query
-							->withoutGlobalScope(SoftDeletingScope::class)
-							->get()
-							->mapWithKeys(fn ($speaker) => [$speaker->id => $speaker->name])
+						Speaker::all()->pluck('name', 'id')
 					)
 					->required()
 			]);
