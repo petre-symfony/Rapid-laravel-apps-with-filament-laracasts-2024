@@ -8,6 +8,7 @@ use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -43,21 +44,26 @@ class Conference extends Model {
 
 	public static function getForm(): array {
 		return [
-			TextInput::make('name')
-				->label('Conference')
-				->default('My Conference')
-				->helperText('The name of the conference')
-				->required()
-				->maxLength(60),
-			MarkdownEditor::make('description')
-				->helperText('Markdown')
-				->required(),
-			DateTimePicker::make('start_date')
-				->native(false)
-				->required(),
-			DateTimePicker::make('end_date')
-				->native(false)
-				->required(),
+			Section::make('Conference Details')
+				->schema(
+					[
+						TextInput::make('name')
+							->label('Conference')
+							->default('My Conference')
+							->helperText('The name of the conference')
+							->required()
+							->maxLength(60),
+						MarkdownEditor::make('description')
+							->helperText('Markdown')
+							->required(),
+						DateTimePicker::make('start_date')
+							->native(false)
+							->required(),
+						DateTimePicker::make('end_date')
+							->native(false)
+							->required()
+					]
+			),
 			Toggle::make('is_published')
 				->default(false),
 			Select::make('status')
