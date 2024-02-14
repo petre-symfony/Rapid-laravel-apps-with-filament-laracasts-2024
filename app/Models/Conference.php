@@ -55,7 +55,7 @@ class Conference extends Model {
 							->required()
 							->maxLength(60),
 						MarkdownEditor::make('description')
-							->columnSpan(2)
+							->columnSpanFull()
 							->helperText('Markdown')
 							->required(),
 						DateTimePicker::make('start_date')
