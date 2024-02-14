@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -36,6 +37,19 @@ class Speaker extends Model {
 			TextInput::make('twitter_handle')
 				->required()
 				->maxLength(255),
+			CheckboxList::make('qualifications')
+				->options([
+					'business-leader' => 'Business Leader',
+					'charisma' => 'Charismatic Speaker',
+					'first-time' => 'First Time Speaker',
+					'hometown-hero' => 'Hometown Hero',
+					'humanitarian' => 'Works in humanitarian field',
+					'laracasts-contributor' => 'Laracasts Contributor',
+					'twitter-influencer' => 'Large Twitter Following',
+					'youtube-influencer' => 'Large Youtube Following',
+					'open-source' => 'Open Source Creater / Maintainer',
+					'unique-perspective' => 'Unique Perspective'
+				])
 		];
 	}
 }
