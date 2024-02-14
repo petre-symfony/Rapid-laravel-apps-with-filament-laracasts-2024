@@ -3,6 +3,15 @@
 namespace App\Models;
 
 use App\Enums\Region;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Get;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,5 +38,57 @@ class Conference extends Model {
 
 	public function talks(): BelongsToMany {
 		return $this->belongsToMany(Talk::class);
+	}
+
+	public static function getForm(): array {
+		return [
+			TextInput::make('name')
+				->label('Conference')
+				->default('My Conference')
+				->helperText('The name of the conference')
+				->required()
+				->maxLength(60),
+			MarkdownEditor::make('description')
+				->helperText('Markdown')
+				->required(),
+			DatePicker::make('start_date')
+				->native(false)
+				->required(),
+			DateTimePicker::make('end_date')
+				->native(false)
+				->required(),
+			Checkbox::make('is_published')
+				->default(false),
+			Select::make('status')
+				->options([
+					'draft' => 'Draft',
+					'published' => 'Published',
+					'archived' => 'Archived'
+				])
+				->required(),
+			Select::make('region')
+				->live()
+				->enum(Region::class)
+				->options(Region::class),
+			Select::make('venue_id')
+				->searchable()
+				->preload()
+				->createOptionForm(Venue::getForm())
+				->editOptionForm(Venue::getForm())
+				->relationship(
+					'venue',
+					'name',
+					modifyQueryUsing: function (Builder $query, Get $get) {
+						ray();
+
+						$query->where('region', $get('region'));
+					}),
+			CheckboxList::make('speakers')
+				->relationship('speakers', 'name')
+				->options(
+					Speaker::all()->pluck('name', 'id')
+				)
+				->required()
+		];
 	}
 }
