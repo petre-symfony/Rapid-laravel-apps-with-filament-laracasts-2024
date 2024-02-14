@@ -10,6 +10,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Get;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,13 +52,13 @@ class Conference extends Model {
 			MarkdownEditor::make('description')
 				->helperText('Markdown')
 				->required(),
-			DatePicker::make('start_date')
+			DateTimePicker::make('start_date')
 				->native(false)
 				->required(),
 			DateTimePicker::make('end_date')
 				->native(false)
 				->required(),
-			Checkbox::make('is_published')
+			Toggle::make('is_published')
 				->default(false),
 			Select::make('status')
 				->options([
@@ -82,13 +83,7 @@ class Conference extends Model {
 						ray();
 
 						$query->where('region', $get('region'));
-					}),
-			CheckboxList::make('speakers')
-				->relationship('speakers', 'name')
-				->options(
-					Speaker::all()->pluck('name', 'id')
-				)
-				->required()
+					})
 		];
 	}
 }
