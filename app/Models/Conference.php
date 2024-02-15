@@ -65,21 +65,22 @@ class Conference extends Model {
 						DateTimePicker::make('end_date')
 							->native(false)
 							->required(),
-						Fieldset::make('Status')
-						->columns(2)
-						->schema([
-							Toggle::make('is_published')
-								->default(false),
-							Select::make('status')
-								->options([
-									'draft' => 'Draft',
-									'published' => 'Published',
-									'archived' => 'Archived'
-								])
-								->required(),
-						])
+
 					]
 			),
+			Fieldset::make('Status')
+				->columns(2)
+				->schema([
+					Toggle::make('is_published')
+						->default(false),
+					Select::make('status')
+						->options([
+							'draft' => 'Draft',
+							'published' => 'Published',
+							'archived' => 'Archived'
+						])
+						->required(),
+				]),
 			Section::make('Location')
 				->columns(2)
 				->schema([
