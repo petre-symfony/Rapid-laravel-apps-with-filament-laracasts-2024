@@ -104,8 +104,9 @@ class Conference extends Model {
 				Actions\Action::make('star')
 					->label('Fill with Factory Data')
 					->icon('heroicon-o-star')
-					->action(function () {
-						ray('hello');
+					->action(function ($livewire) {
+						ray($livewire->form);
+						$data = Conference::factory()->make()->toArray();
 					})
 			])
 		];
