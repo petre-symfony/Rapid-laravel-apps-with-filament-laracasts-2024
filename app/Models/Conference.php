@@ -46,6 +46,9 @@ class Conference extends Model {
 	public static function getForm(): array {
 		return [
 			Section::make('Conference Details')
+				->aside()
+				->description('Provide some basic information about the conference')
+				->icon('heroicon-o-information-circle')
 				->columns(2)
 				->schema(
 					[
