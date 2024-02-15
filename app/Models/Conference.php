@@ -66,6 +66,27 @@ class Conference extends Model {
 							->required()
 					]
 			),
+			Section::make('Location')
+				->columns(2)
+				->schema([
+					Select::make('region')
+						->live()
+						->enum(Region::class)
+						->options(Region::class),
+					Select::make('venue_id')
+						->searchable()
+						->preload()
+						->createOptionForm(Venue::getForm())
+						->editOptionForm(Venue::getForm())
+						->relationship(
+							'venue',
+							'name',
+							modifyQueryUsing: function (Builder $query, Get $get) {
+								ray();
+
+								$query->where('region', $get('region'));
+							})
+				]),
 			Toggle::make('is_published')
 				->default(false),
 			Select::make('status')
@@ -75,23 +96,6 @@ class Conference extends Model {
 					'archived' => 'Archived'
 				])
 				->required(),
-			Select::make('region')
-				->live()
-				->enum(Region::class)
-				->options(Region::class),
-			Select::make('venue_id')
-				->searchable()
-				->preload()
-				->createOptionForm(Venue::getForm())
-				->editOptionForm(Venue::getForm())
-				->relationship(
-					'venue',
-					'name',
-					modifyQueryUsing: function (Builder $query, Get $get) {
-						ray();
-
-						$query->where('region', $get('region'));
-					})
 		];
 	}
 }
