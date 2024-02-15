@@ -47,6 +47,7 @@ class Conference extends Model {
 	public static function getForm(): array {
 		return [
 			Tabs::make()
+				->columnSpanFull()
 				->tabs([
 					Tabs\Tab::make('Conference Details')
 						->schema([
