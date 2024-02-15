@@ -7,6 +7,7 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -63,7 +64,20 @@ class Conference extends Model {
 							->required(),
 						DateTimePicker::make('end_date')
 							->native(false)
-							->required()
+							->required(),
+						Fieldset::make('Status')
+						->columns(2)
+						->schema([
+							Toggle::make('is_published')
+								->default(false),
+							Select::make('status')
+								->options([
+									'draft' => 'Draft',
+									'published' => 'Published',
+									'archived' => 'Archived'
+								])
+								->required(),
+						])
 					]
 			),
 			Section::make('Location')
@@ -86,16 +100,7 @@ class Conference extends Model {
 
 								$query->where('region', $get('region'));
 							})
-				]),
-			Toggle::make('is_published')
-				->default(false),
-			Select::make('status')
-				->options([
-					'draft' => 'Draft',
-					'published' => 'Published',
-					'archived' => 'Archived'
 				])
-				->required(),
 		];
 	}
 }
