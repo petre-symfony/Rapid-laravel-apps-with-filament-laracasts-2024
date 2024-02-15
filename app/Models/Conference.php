@@ -49,7 +49,7 @@ class Conference extends Model {
 				->collapsible()
 				->description('Provide some basic information about the conference')
 				->icon('heroicon-o-information-circle')
-				->columns(2)
+				->columns(['md' => 2, 'lg' => 3])
 				->schema(
 					[
 						TextInput::make('name')
