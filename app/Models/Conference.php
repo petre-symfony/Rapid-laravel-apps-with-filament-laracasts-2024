@@ -3,15 +3,12 @@
 namespace App\Models;
 
 use App\Enums\Region;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Get;
@@ -102,7 +99,15 @@ class Conference extends Model {
 
 								$query->where('region', $get('region'));
 							})
-				])
+				]),
+			Actions::make([
+				Actions\Action::make('star')
+					->label('Fill with Factory Data')
+					->icon('heroicon-o-star')
+					->action(function () {
+						ray('hello');
+					})
+			])
 		];
 	}
 }
