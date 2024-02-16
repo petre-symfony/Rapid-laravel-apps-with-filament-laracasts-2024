@@ -106,7 +106,6 @@ class Conference extends Model {
 					->icon('heroicon-o-star')
 					->action(function ($livewire) {
 						$data = Conference::factory()->make()->toArray();
-						unset($data['venue_id']);
 						$livewire->form->fill($data);
 					})
 			])

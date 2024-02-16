@@ -20,18 +20,21 @@ class ConferenceFactory extends Factory {
 	 * Define the model's default state.
 	 */
 	public function definition(): array {
+		$startDate = now()->addMonths(9);
+		$endDate = now()->addMonths(9)->addDays(2);
+
 		return [
 			'name' => $this->faker->name(),
 			'description' => $this->faker->text(),
-			'start_date' => $this->faker->dateTime(),
-			'end_date' => $this->faker->dateTime(),
+			'start_date' => $startDate,
+			'end_date' => $endDate,
 			'status' => $this->faker->randomElement([
 				'draft',
 				'published',
 				'archived'
 			]),
 			'region' => $this->faker->randomElement(Region::class),
-			'venue_id' => Venue::factory(),
+			'venue_id' => null,
 		];
 	}
 }
