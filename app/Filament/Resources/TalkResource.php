@@ -45,6 +45,7 @@ class TalkResource extends Resource {
 						return Str::of($record->abstract)->limit(40);
 					}),
 				Tables\Columns\ImageColumn::make('speaker.avatar')
+					->label('Speaker Avatar')
 					->defaultImageUrl(function ($record) {
 						return 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' . urlencode($record->speaker->name);
 					})
