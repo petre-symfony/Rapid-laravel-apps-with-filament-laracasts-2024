@@ -40,7 +40,8 @@ class TalkResource extends Resource {
 				Tables\Columns\TextColumn::make('title')
 					->searchable()
 					->sortable(),
-				Tables\Columns\TextColumn::make('abstract'),
+				Tables\Columns\TextColumn::make('abstract')
+					->wrap(),
 				Tables\Columns\TextColumn::make('speaker.name')
 					->numeric()
 					->sortable()
