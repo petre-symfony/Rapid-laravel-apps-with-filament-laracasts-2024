@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class TalkResource extends Resource {
 	protected static ?string $model = Talk::class;
@@ -41,7 +42,7 @@ class TalkResource extends Resource {
 					->searchable()
 					->sortable()
 					->description(function (Talk $record) {
-						return $record->abstract;
+						return Str::of($record->abstract)->limit(40);
 					}),
 				Tables\Columns\TextColumn::make('speaker.name')
 					->numeric()
