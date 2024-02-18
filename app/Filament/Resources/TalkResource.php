@@ -58,6 +58,10 @@ class TalkResource extends Resource {
 					->sortable()
 					->color(function ($state) {
 						return $state->getColor();
+					}),
+				Tables\Columns\IconColumn::make('length')
+					->icon(function ($state) {
+						return 'heroicon-o-bolt';
 					})
 			])
 			->filters([
