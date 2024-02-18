@@ -39,9 +39,10 @@ class TalkResource extends Resource {
 			->columns([
 				Tables\Columns\TextColumn::make('title')
 					->searchable()
-					->sortable(),
-				Tables\Columns\TextColumn::make('abstract')
-					->wrap(),
+					->sortable()
+					->description(function (Talk $record) {
+						return $record->abstract;
+					}),
 				Tables\Columns\TextColumn::make('speaker.name')
 					->numeric()
 					->sortable()
