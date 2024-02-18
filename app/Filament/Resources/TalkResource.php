@@ -47,7 +47,8 @@ class TalkResource extends Resource {
 				Tables\Columns\ImageColumn::make('speaker.avatar')
 					->defaultImageUrl(function ($record) {
 						return 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' . urlencode($record->speaker->name);
-					}),
+					})
+					->circular(),
 				Tables\Columns\TextColumn::make('speaker.name')
 					->numeric()
 					->sortable()
