@@ -52,7 +52,8 @@ class TalkResource extends Resource {
 					->numeric()
 					->sortable()
 					->searchable(),
-				Tables\Columns\ToggleColumn::make('new_talk')
+				Tables\Columns\ToggleColumn::make('new_talk'),
+				Tables\Columns\TextColumn::make('status')->badge()
 			])
 			->filters([
 				//
