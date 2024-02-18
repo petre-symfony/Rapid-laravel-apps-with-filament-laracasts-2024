@@ -39,10 +39,12 @@ class TalkResource extends Resource {
 	public static function table(Table $table): Table {
 		return $table
 			->columns([
-				Tables\Columns\TextInputColumn::make('title')
+				Tables\Columns\TextColumn::make('title')
 					->searchable()
-					->rules(['required', 'max:255'])
-					->sortable(),
+					->sortable()
+					->description(function (Talk $record) {
+						return Str::of($record->abstract)->limit(40);
+					}),
 				Tables\Columns\ImageColumn::make('speaker.avatar')
 					->label('Speaker Avatar')
 					->defaultImageUrl(function ($record) {
