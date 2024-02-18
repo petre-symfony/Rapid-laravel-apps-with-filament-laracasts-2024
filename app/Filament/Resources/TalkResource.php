@@ -44,6 +44,7 @@ class TalkResource extends Resource {
 					->description(function (Talk $record) {
 						return Str::of($record->abstract)->limit(40);
 					}),
+				Tables\Columns\ImageColumn::make('speaker.avatar'),
 				Tables\Columns\TextColumn::make('speaker.name')
 					->numeric()
 					->sortable()
