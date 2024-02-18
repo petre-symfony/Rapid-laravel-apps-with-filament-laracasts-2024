@@ -38,10 +38,12 @@ class TalkResource extends Resource {
 		return $table
 			->columns([
 				Tables\Columns\TextColumn::make('title')
-					->searchable(),
+					->searchable()
+					->sortable(),
 				Tables\Columns\TextColumn::make('speaker.name')
 					->numeric()
 					->sortable()
+					->searchable()
 			])
 			->filters([
 				//
