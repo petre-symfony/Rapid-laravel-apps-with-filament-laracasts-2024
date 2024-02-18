@@ -53,7 +53,8 @@ class TalkResource extends Resource {
 				Tables\Columns\TextColumn::make('speaker.name')
 					->numeric()
 					->sortable()
-					->searchable()
+					->searchable(),
+				Tables\Columns\IconColumn::make('new_talk')->boolean()
 			])
 			->filters([
 				//
