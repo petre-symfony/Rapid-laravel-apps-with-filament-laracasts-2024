@@ -54,7 +54,7 @@ class TalkResource extends Resource {
 					->numeric()
 					->sortable()
 					->searchable(),
-				Tables\Columns\IconColumn::make('new_talk')->boolean()
+				Tables\Columns\ToggleColumn::make('new_talk')
 			])
 			->filters([
 				//
