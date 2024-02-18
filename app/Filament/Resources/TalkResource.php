@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\TalkLength;
 use App\Filament\Resources\TalkResource\Pages;
 use App\Filament\Resources\TalkResource\RelationManagers;
 use App\Models\Talk;
@@ -61,7 +62,11 @@ class TalkResource extends Resource {
 					}),
 				Tables\Columns\IconColumn::make('length')
 					->icon(function ($state) {
-						return 'heroicon-o-bolt';
+						return match($state) {
+							TalkLength::NORMAL => 'heroicon-o-megaphone',
+							TalkLength::LIGHTNING => 'heroicon-o-bolt',
+							TalkLength::KEYNOTE => 'heroicon-o-key'
+						};
 					})
 			])
 			->filters([
