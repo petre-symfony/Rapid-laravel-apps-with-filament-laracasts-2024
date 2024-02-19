@@ -77,7 +77,13 @@ class TalkResource extends Resource {
 					->relationship('speaker', 'name')
 					->multiple()
 					->searchable()
-					->preload()
+					->preload(),
+				Tables\Filters\Filter::make('has_avatar')
+					->query(function ($query) {
+						return $query->whereHas('speaker', function (Builder $query) {
+							$query->whereNotNull('avatar');
+						});
+					})
 			])
 			->actions([
 				Tables\Actions\EditAction::make(),
