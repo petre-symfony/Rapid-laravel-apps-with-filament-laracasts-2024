@@ -143,7 +143,9 @@ class TalkResource extends Resource {
 			])
 			->headerActions([
 				Tables\Actions\Action::make('export')
-					->action(function () {
+					->tooltip('This wil export all records visible in the table. Adjust filters to export a subset of records')
+					->action(function ($livewire) {
+						ray($livewire->getFilteredTableQuery()->count());
 						ray('Exporting talks...');
 					})
 			])
