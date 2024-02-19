@@ -140,7 +140,14 @@ class TalkResource extends Resource {
 					Tables\Actions\DeleteBulkAction::make(),
 					Tables\Actions\RestoreBulkAction::make()
 				]),
-			]);
+			])
+			->headerActions([
+				Tables\Actions\Action::make('export')
+					->action(function () {
+						ray('Exporting talks...');
+					})
+			])
+			;
 	}
 
 	public static function getRelations(): array {
