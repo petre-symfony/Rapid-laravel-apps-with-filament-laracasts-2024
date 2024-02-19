@@ -111,7 +111,7 @@ class TalkResource extends Resource {
 		return [
 			'index' => Pages\ListTalks::route('/'),
 			'create' => Pages\CreateTalk::route('/create'),
-			'edit' => Pages\EditTalk::route('/{record}/edit'),
+	//		'edit' => Pages\EditTalk::route('/{record}/edit'),
 		];
 	}
 }
