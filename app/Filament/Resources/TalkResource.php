@@ -110,6 +110,7 @@ class TalkResource extends Resource {
 				Tables\Actions\Action::make('reject')
 					->icon('heroicon-o-no-symbol')
 					->color('danger')
+					->requiresConfirmation()
 					->action(function (Talk $record) {
 						$record->reject();
 					})
