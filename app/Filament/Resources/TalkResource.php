@@ -8,6 +8,7 @@ use App\Filament\Resources\TalkResource\RelationManagers;
 use App\Models\Talk;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -94,6 +95,18 @@ class TalkResource extends Resource {
 			->actions([
 				Tables\Actions\EditAction::make()
 					->slideOver(),
+				Tables\Actions\Action::make('approve')
+					->icon('heroicon-o-check-circle')
+					->color('success')
+					->action(function (Talk $record) {
+						$record->approved();
+					})
+					->after(function () {
+						Notification::make()->success()->title('This talk was approved')
+							->duration(1000)
+							->body('The speaker has been notified and the talk has been added to the conference schedule')
+							->send();
+					})
 			])
 			->bulkActions([
 				Tables\Actions\BulkActionGroup::make([
