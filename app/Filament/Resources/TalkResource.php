@@ -72,7 +72,9 @@ class TalkResource extends Resource {
 					})
 			])
 			->filters([
-				Tables\Filters\TernaryFilter::make('new_talk')
+				Tables\Filters\TernaryFilter::make('new_talk'),
+				Tables\Filters\SelectFilter::make('speaker')
+					->relationship('speaker', 'name')
 			])
 			->actions([
 				Tables\Actions\EditAction::make(),
