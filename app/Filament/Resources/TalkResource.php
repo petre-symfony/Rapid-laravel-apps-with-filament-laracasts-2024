@@ -72,7 +72,7 @@ class TalkResource extends Resource {
 					})
 			])
 			->filters([
-				//
+				Tables\Filters\TernaryFilter::make('new_talk')
 			])
 			->actions([
 				Tables\Actions\EditAction::make(),
