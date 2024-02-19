@@ -79,6 +79,7 @@ class TalkResource extends Resource {
 					->searchable()
 					->preload(),
 				Tables\Filters\Filter::make('has_avatar')
+					->label('Show Only Speakers with Avatars')
 					->toggle()
 					->query(function ($query) {
 						return $query->whereHas('speaker', function (Builder $query) {
