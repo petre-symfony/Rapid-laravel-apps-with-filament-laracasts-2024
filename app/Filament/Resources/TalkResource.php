@@ -95,31 +95,33 @@ class TalkResource extends Resource {
 			->actions([
 				Tables\Actions\EditAction::make()
 					->slideOver(),
-				Tables\Actions\Action::make('approve')
-					->icon('heroicon-o-check-circle')
-					->color('success')
-					->action(function (Talk $record) {
-						$record->approved();
-					})
-					->after(function () {
-						Notification::make()->success()->title('This talk was approved')
-							->duration(1000)
-							->body('The speaker has been notified and the talk has been added to the conference schedule')
-							->send();
-					}),
-				Tables\Actions\Action::make('reject')
-					->icon('heroicon-o-no-symbol')
-					->color('danger')
-					->requiresConfirmation()
-					->action(function (Talk $record) {
-						$record->reject();
-					})
-					->after(function () {
-						Notification::make()->danger()->title('This talk was rejected')
-							->duration(1000)
-							->body('The speaker has been notified')
-							->send();
-					})
+				Tables\Actions\ActionGroup::make([
+					Tables\Actions\Action::make('approve')
+						->icon('heroicon-o-check-circle')
+						->color('success')
+						->action(function (Talk $record) {
+							$record->approved();
+						})
+						->after(function () {
+							Notification::make()->success()->title('This talk was approved')
+								->duration(1000)
+								->body('The speaker has been notified and the talk has been added to the conference schedule')
+								->send();
+						}),
+					Tables\Actions\Action::make('reject')
+						->icon('heroicon-o-no-symbol')
+						->color('danger')
+						->requiresConfirmation()
+						->action(function (Talk $record) {
+							$record->reject();
+						})
+						->after(function () {
+							Notification::make()->danger()->title('This talk was rejected')
+								->duration(1000)
+								->body('The speaker has been notified')
+								->send();
+						})
+				]),
 			])
 			->bulkActions([
 				Tables\Actions\BulkActionGroup::make([
