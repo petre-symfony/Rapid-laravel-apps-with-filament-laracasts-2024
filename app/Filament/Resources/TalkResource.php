@@ -106,6 +106,18 @@ class TalkResource extends Resource {
 							->duration(1000)
 							->body('The speaker has been notified and the talk has been added to the conference schedule')
 							->send();
+					}),
+				Tables\Actions\Action::make('reject')
+					->icon('heroicon-o-no-symbol')
+					->color('danger')
+					->action(function (Talk $record) {
+						$record->reject();
+					})
+					->after(function () {
+						Notification::make()->danger()->title('This talk was rejected')
+							->duration(1000)
+							->body('The speaker has been notified')
+							->send();
 					})
 			])
 			->bulkActions([
