@@ -15,6 +15,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class TalkResource extends Resource {
@@ -131,10 +132,14 @@ class TalkResource extends Resource {
 				]),
 			])
 			->bulkActions([
-				//Tables\Actions\BulkActionGroup::make([
+				Tables\Actions\BulkActionGroup::make([
+					Tables\Actions\BulkAction::make('approve')
+						->action(function (Collection $records) {
+							$records->each->approved();
+						}),
 					Tables\Actions\DeleteBulkAction::make(),
 					Tables\Actions\RestoreBulkAction::make()
-				//]),
+				]),
 			]);
 	}
 
