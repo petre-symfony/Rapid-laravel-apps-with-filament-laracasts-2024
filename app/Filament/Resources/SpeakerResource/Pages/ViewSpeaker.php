@@ -13,6 +13,7 @@ class ViewSpeaker extends ViewRecord {
 	protected function getHeaderActions(): array {
 		return [
 			Actions\EditAction::make()
+				->slideOver()
 				->form(Speaker::getForm())
 		];
 	}

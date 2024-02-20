@@ -102,7 +102,6 @@ class SpeakerResource extends Resource {
 		return [
 			'index' => Pages\ListSpeakers::route('/'),
 			'create' => Pages\CreateSpeaker::route('/create'),
-			'edit' => Pages\EditSpeaker::route('/{record}/edit'),
 			'view' => Pages\ViewSpeaker::route('/{record}')
 		];
 	}
