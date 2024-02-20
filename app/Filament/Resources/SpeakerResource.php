@@ -101,7 +101,9 @@ class SpeakerResource extends Resource {
 					]),
 				Section::make('Other Information')
 					->schema([
-						TextEntry::make('bio'),
+						TextEntry::make('bio')
+							->extraAttributes(['class' => 'prose dark:prose-invert'])
+							->html(),
 						TextEntry::make('qualifications')
 					])
 			]);
