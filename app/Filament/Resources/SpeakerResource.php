@@ -83,7 +83,12 @@ class SpeakerResource extends Resource {
 										return 'https://twitter.com/'.$record->twitter_handle;
 									})
 							])
-						])
+					]),
+				Section::make('Other Information')
+					->schema([
+						TextEntry::make('bio'),
+						TextEntry::make('qualifications')
+					])
 			]);
 	}
 
