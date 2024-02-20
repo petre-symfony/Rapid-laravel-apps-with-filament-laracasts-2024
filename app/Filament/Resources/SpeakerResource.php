@@ -76,6 +76,9 @@ class SpeakerResource extends Resource {
 								TextEntry::make('email'),
 								TextEntry::make('twitter_handle')
 									->label('Twitter')
+									->getStateUsing(function ($record) {
+										return '@' . $record->twitter_handle;
+									})
 									->url(function ($record) {
 										return 'https://twitter.com/'.$record->twitter_handle;
 									})
