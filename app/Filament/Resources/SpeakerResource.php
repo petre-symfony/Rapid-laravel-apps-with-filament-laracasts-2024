@@ -7,6 +7,7 @@ use App\Filament\Resources\SpeakerResource\RelationManagers;
 use App\Models\Speaker;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
@@ -62,7 +63,10 @@ class SpeakerResource extends Resource {
 		return $infolist
 			->schema([
 				Section::make('Personal Information')
+					->columns(3)
 					->schema([
+						ImageEntry::make('avatar')
+							->circular(),
 						TextEntry::make('name'),
 						TextEntry::make('email'),
 						TextEntry::make('twitter_handle')
