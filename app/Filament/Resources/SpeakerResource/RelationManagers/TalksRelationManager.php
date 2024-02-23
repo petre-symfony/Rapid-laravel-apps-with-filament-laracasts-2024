@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SpeakerResource\RelationManagers;
 
+use App\Models\Talk;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -15,11 +16,7 @@ class TalksRelationManager extends RelationManager {
 
 	public function form(Form $form): Form {
 		return $form
-			->schema([
-				Forms\Components\TextInput::make('title')
-					->required()
-					->maxLength(255),
-			]);
+			->schema(Talk::getForm());
 	}
 
 	public function table(Table $table): Table {
