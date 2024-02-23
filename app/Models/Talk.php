@@ -37,7 +37,7 @@ class Talk extends Model {
 		$this->save();
 	}
 
-	public static function getForm(): array {
+	public static function getForm($speakerId = null): array {
 		return [
 			TextInput::make('title')
 				->required()
@@ -47,6 +47,9 @@ class Talk extends Model {
 				->maxLength(65535)
 				->columnSpanFull(),
 			Select::make('speaker_id')
+				->hidden(function () use ($speakerId) {
+					return $speakerId !== null;
+				})
 				->relationship('speaker', 'name')
 				->required(),
 		];

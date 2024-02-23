@@ -17,10 +17,10 @@ class TalksRelationManager extends RelationManager {
 	public function isReadOnly(): bool {
 		return false;
 	}
-	
+
 	public function form(Form $form): Form {
 		return $form
-			->schema(Talk::getForm());
+			->schema(Talk::getForm($this->getOwnerRecord()->id));
 	}
 
 	public function table(Table $table): Table {
