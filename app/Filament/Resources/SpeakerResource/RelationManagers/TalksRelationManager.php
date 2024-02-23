@@ -28,6 +28,7 @@ class TalksRelationManager extends RelationManager {
 			->recordTitleAttribute('title')
 			->columns([
 				Tables\Columns\TextColumn::make('title'),
+				Tables\Columns\TextColumn::make('status')
 			])
 			->filters([
 				//
