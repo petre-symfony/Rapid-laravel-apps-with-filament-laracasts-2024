@@ -34,7 +34,13 @@ class TestChart extends Widget implements HasActions, HasForms {
 						\Filament\Notifications\Actions\Action::make('goToAttendee')
 							->button()
 							->color('primary')
-							->url(AttendeeResource::getUrl('edit', ['record' => 1]))
+							->url(AttendeeResource::getUrl('edit', ['record' => 1])),
+						\Filament\Notifications\Actions\Action::make('undo')
+							->link()
+							->color('gray')
+							->action(function () {
+								ray('hi');
+							})
 					])
 					->send();
 			});
