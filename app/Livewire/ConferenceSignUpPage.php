@@ -35,7 +35,7 @@ class ConferenceSignUpPage extends Component implements HasForms, HasActions {
 			->form([
 				Placeholder::make('total_price')
 					->content(function (Get $get) {
-						ray(count($get('attendees')));
+						return '$' . count($get('attendees'))*500;
 					}),
 				Repeater::make('attendees')
 					->schema(Attendee::getForm())
