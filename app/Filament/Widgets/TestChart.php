@@ -31,10 +31,10 @@ class TestChart extends Widget implements HasActions, HasForms {
 					->body('This is a test')
 					->persistent()
 					->actions([
-						\Filament\Notifications\Actions\Action::make('goToAttendees')
+						\Filament\Notifications\Actions\Action::make('goToAttendee')
 							->button()
 							->color('primary')
-							->url(AttendeeResource::getUrl('index'))
+							->url(AttendeeResource::getUrl('edit', ['record' => 1]))
 					])
 					->send();
 			});
