@@ -22,6 +22,8 @@ class AttendeeResource extends Resource {
 
 	protected static ?string $navigationGroup = 'First Group';
 
+	protected static ?string $recordTitleAttribute = 'name';
+
 	public static function getNavigationBadge(): ?string {
 		return Attendee::count();
 	}
