@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AttendeeResource\Pages;
 use App\Filament\Resources\AttendeeResource\RelationManagers;
+use App\Filament\Resources\AttendeeResource\Widgets\AttendeesStatsWidget;
 use App\Models\Attendee;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -79,6 +80,12 @@ class AttendeeResource extends Resource {
 	public static function getRelations(): array {
 		return [
 			//
+		];
+	}
+
+	public static function getWidgets(): array {
+		return [
+			AttendeesStatsWidget::class
 		];
 	}
 
