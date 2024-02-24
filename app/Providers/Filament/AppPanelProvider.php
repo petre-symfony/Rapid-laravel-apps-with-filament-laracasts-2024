@@ -31,7 +31,7 @@ class AppPanelProvider extends PanelProvider {
 			->passwordReset()
 			->emailVerification()
 			->brandName('Ecobust')
-			->darkMode()
+			->darkMode(true, true)
 			->colors([
 				'primary' => Color::Indigo,
 				'gray' => Color::Slate
