@@ -22,6 +22,14 @@ class AttendeeResource extends Resource {
 
 	protected static ?string $navigationGroup = 'First Group';
 
+	public static function getNavigationBadge(): ?string {
+		return Attendee::count();
+	}
+
+	public static function getNavigationBadgeColor(): string|array|null {
+		return 'success';
+	}
+
 	public static function form(Form $form): Form {
 		return $form
 			->schema([
