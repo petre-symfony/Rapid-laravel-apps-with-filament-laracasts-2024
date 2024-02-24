@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -38,6 +39,10 @@ class AppPanelProvider extends PanelProvider {
 			])
 			->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
 			->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+			->navigationGroups([
+				NavigationGroup::make('First Group')->icon('heroicon-o-cake'),
+				NavigationGroup::make('Second Group')->icon('heroicon-o-bolt')
+			])
 			->pages([
 				Pages\Dashboard::class,
 			])
