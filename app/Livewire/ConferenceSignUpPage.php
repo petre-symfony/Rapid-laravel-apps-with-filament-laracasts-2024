@@ -15,6 +15,14 @@ use Livewire\Component;
 class ConferenceSignUpPage extends Component implements HasForms, HasActions {
 	use InteractsWithActions, InteractsWithForms;
 
+	public int $conferenceId;
+
+	public int $price = 50000;
+
+	public function mount() {
+		$this->conferenceId = 1;
+	}
+
 	public function render() {
 		return view('livewire.conference-sign-up-page');
 	}
@@ -27,7 +35,15 @@ class ConferenceSignUpPage extends Component implements HasForms, HasActions {
 					->schema(Attendee::getForm())
 			])
 			->action(function (array $data) {
-				ray($data);
+				collect($data['attendees'])->each(function ($data) {
+					Attendee::create([
+						'conference_id' => $this->conferenceId,
+						'name' => $data['name'],
+						'ticket_cost' => $this->price,
+						'email' => $data['email'],
+						'is_paid' => true
+					]);
+				});
 			});
 	}
 }
