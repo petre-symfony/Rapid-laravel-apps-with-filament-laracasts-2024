@@ -292,4 +292,5 @@
       </div>
     </div>
   </footer>
+  <x-filament-actions::modals />
 </div>
