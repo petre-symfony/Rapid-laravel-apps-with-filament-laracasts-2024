@@ -7,6 +7,10 @@ use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class AttendeesStatsWidget extends BaseWidget {
+	protected function getColumns(): int {
+		return 2;
+	}
+
 	protected function getStats(): array {
 		return [
 			Stat::make('Attendees Count', Attendee::count())
