@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\AttendeeResource\Widgets;
 
-use App\Models\Attendee;
+use App\Filament\Resources\AttendeeResource\Pages\ListAttendees;
 use Filament\Widgets\ChartWidget;
 use Filament\Widgets\Concerns\InteractsWithPageTable;
 use Flowframe\Trend\Trend;
@@ -63,6 +63,10 @@ class AttendeeChartWidget extends ChartWidget {
 			],
 			'labels' => $data->map(fn (TrendValue $value) => $value->date)
 		];
+	}
+
+	protected function getTablePage(): string {
+		return ListAttendees::class;
 	}
 
 	protected function getType(): string {
