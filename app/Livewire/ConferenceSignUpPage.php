@@ -12,6 +12,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Get;
+use Filament\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 use Livewire\Component;
 
 class ConferenceSignUpPage extends Component implements HasForms, HasActions {
@@ -50,6 +52,11 @@ class ConferenceSignUpPage extends Component implements HasForms, HasActions {
 						'is_paid' => true
 					]);
 				});
+			})
+			->after(function () {
+				Notification::make()->success()->title('Success')
+					->body(new HtmlString('You have successfully sign up for the conference'))
+					->send();
 			});
 	}
 }
