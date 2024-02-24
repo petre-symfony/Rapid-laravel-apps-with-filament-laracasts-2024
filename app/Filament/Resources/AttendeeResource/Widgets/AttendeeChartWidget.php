@@ -14,15 +14,43 @@ class AttendeeChartWidget extends ChartWidget {
 
 	protected static ?string $maxHeight = '200px';
 
+	public ?string $filter = '3months';
+
+	protected function getFilters(): ?array {
+		return [
+			'week' => 'Last Week',
+			'month' => 'Last Month',
+			'3months' => 'Last 3 Months'
+		];
+	}
+	
 	protected function getData(): array {
-		$data = Trend::model(Attendee::class)
-			->between(
-				start: now()->subMonth(3),
-				end: now()
-			)
-			->perMonth()
-			->count()
-		;
+		$filter = $this->filter;
+
+		match($filter) {
+			'week' => $data = Trend::model(Attendee::class)
+				->between(
+					start: now()->subWeek(),
+					end: now()
+				)
+				->perDay()
+				->count(),
+			'month' => $data = Trend::model(Attendee::class)
+				->between(
+					start: now()->subMonth(),
+					end: now()
+				)
+				->perDay()
+				->count(),
+			'3months' => $data = Trend::model(Attendee::class)
+				->between(
+					start: now()->subMonth(3),
+					end: now()
+				)
+				->perMonth()
+				->count()
+		};
+
 		return [
 			'datasets' => [
 				[
