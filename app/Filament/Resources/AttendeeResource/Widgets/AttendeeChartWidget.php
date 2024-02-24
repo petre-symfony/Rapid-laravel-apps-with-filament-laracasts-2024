@@ -15,7 +15,7 @@ class AttendeeChartWidget extends ChartWidget {
 
 	protected int | string | array $columnSpan = 'full';
 
-	protected static ?string $pollingInterval = '1s';
+	protected static ?string $pollingInterval = null;
 
 	protected static ?string $maxHeight = '200px';
 
