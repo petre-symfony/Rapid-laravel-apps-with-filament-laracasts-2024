@@ -2,15 +2,18 @@
 
 namespace App\Filament\Resources\AttendeeResource\Widgets;
 
+use App\Models\Attendee;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class AttendeesStatsWidget extends BaseWidget {
 	protected function getStats(): array {
 		return [
-			Stat::make('Unique views', '192.1k'),
-			Stat::make('Bounce Rate', '21%'),
-			Stat::make('Average time on page', '3.12')
+			Stat::make('Attendees Count', Attendee::count())
+				->description('Total number of attendees')
+				->descriptionIcon('heroicon-o-user-group')
+			,
+			Stat::make('Total Revenue', Attendee::sum('ticket_cost') / 100)
 		];
 	}
 }
