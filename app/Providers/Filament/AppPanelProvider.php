@@ -39,6 +39,7 @@ class AppPanelProvider extends PanelProvider {
 			])
 			->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
 			->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+			->sidebarCollapsibleOnDesktop()
 			->navigationGroups([
 				NavigationGroup::make('First Group')->icon('heroicon-o-cake'),
 				NavigationGroup::make('Second Group')->icon('heroicon-o-bolt')
