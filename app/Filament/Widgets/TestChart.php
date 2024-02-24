@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Filament\Resources\AttendeeResource;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -29,6 +30,12 @@ class TestChart extends Widget implements HasActions, HasForms {
 					->title('You sent a notification')
 					->body('This is a test')
 					->persistent()
+					->actions([
+						\Filament\Notifications\Actions\Action::make('goToAttendees')
+							->button()
+							->color('primary')
+							->url(AttendeeResource::getUrl('index'))
+					])
 					->send();
 			});
 	}
