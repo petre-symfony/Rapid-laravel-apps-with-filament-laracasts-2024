@@ -6,10 +6,12 @@ use App\Models\Attendee;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Get;
 use Livewire\Component;
 
 class ConferenceSignUpPage extends Component implements HasForms, HasActions {
@@ -31,6 +33,10 @@ class ConferenceSignUpPage extends Component implements HasForms, HasActions {
 		return Action::make('signUp')
 			->slideOver()
 			->form([
+				Placeholder::make('total_price')
+					->content(function (Get $get) {
+						ray(count($get('attendees')));
+					}),
 				Repeater::make('attendees')
 					->schema(Attendee::getForm())
 			])
