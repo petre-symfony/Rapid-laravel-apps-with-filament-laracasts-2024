@@ -22,7 +22,8 @@ class SpeakersPanelProvider extends PanelProvider {
 	public function panel(Panel $panel): Panel {
 		return $panel
 			->id('speakers')
-			->path('speakers')
+			->path('speaker')
+			->login()
 			->colors([
 				'primary' => Color::Amber,
 			])
