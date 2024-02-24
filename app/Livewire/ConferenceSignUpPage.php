@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\Attendee;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -21,10 +23,11 @@ class ConferenceSignUpPage extends Component implements HasForms, HasActions {
 		return Action::make('signUp')
 			->slideOver()
 			->form([
-				TextInput::make('name')
+				Repeater::make('attendees')
+					->schema(Attendee::getForm())
 			])
-			->action(function () {
-				ray('hi');
+			->action(function (array $data) {
+				ray($data);
 			});
 	}
 }
