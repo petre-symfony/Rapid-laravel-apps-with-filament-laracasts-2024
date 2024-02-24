@@ -4,10 +4,13 @@ namespace App\Filament\Resources\AttendeeResource\Widgets;
 
 use App\Models\Attendee;
 use Filament\Widgets\ChartWidget;
+use Filament\Widgets\Concerns\InteractsWithPageTable;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 
 class AttendeeChartWidget extends ChartWidget {
+	use InteractsWithPageTable;
+
 	protected static ?string $heading = 'Chart';
 
 	protected int | string | array $columnSpan = 'full';
@@ -23,26 +26,26 @@ class AttendeeChartWidget extends ChartWidget {
 			'3months' => 'Last 3 Months'
 		];
 	}
-	
+
 	protected function getData(): array {
 		$filter = $this->filter;
 
 		match($filter) {
-			'week' => $data = Trend::model(Attendee::class)
+			'week' => $data = Trend::query($this->getPageTableQuery())
 				->between(
 					start: now()->subWeek(),
 					end: now()
 				)
 				->perDay()
 				->count(),
-			'month' => $data = Trend::model(Attendee::class)
+			'month' => $data = Trend::query($this->getPageTableQuery())
 				->between(
 					start: now()->subMonth(),
 					end: now()
 				)
 				->perDay()
 				->count(),
-			'3months' => $data = Trend::model(Attendee::class)
+			'3months' => $data = Trend::query($this->getPageTableQuery())
 				->between(
 					start: now()->subMonth(3),
 					end: now()
