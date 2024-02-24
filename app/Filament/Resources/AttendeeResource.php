@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AttendeeResource extends Resource {
@@ -30,6 +31,12 @@ class AttendeeResource extends Resource {
 
 	public static function getNavigationBadgeColor(): string|array|null {
 		return 'success';
+	}
+
+	public static function getGlobalSearchResultDetails(Model $record): array {
+		return [
+			'Conference' => $record->conference->name
+		];
 	}
 
 	public static function form(Form $form): Form {
