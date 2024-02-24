@@ -28,7 +28,7 @@ class TestChart extends Widget implements HasActions, HasForms {
 					->warning()
 					->title('You sent a notification')
 					->body('This is a test')
-					->duration(500)
+					->persistent()
 					->send();
 			});
 	}
