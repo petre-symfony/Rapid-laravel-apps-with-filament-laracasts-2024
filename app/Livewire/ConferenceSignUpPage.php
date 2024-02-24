@@ -19,6 +19,7 @@ class ConferenceSignUpPage extends Component implements HasForms, HasActions {
 
 	public function signUpAction(): Action {
 		return Action::make('signUp')
+			->slideOver()
 			->form([
 				TextInput::make('name')
 			])
