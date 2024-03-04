@@ -44,6 +44,10 @@ class AttendeeResource extends Resource {
 		return $form
 			->schema([
 				Shout::make('warn-price')
+					->visible(function (Forms\Get $get) {
+						return $get('ticket_cost') > 500;
+					})
+					->columnSpanFull()
 					->type('warning')
 					->content('The price is too high'),
 				Forms\Components\TextInput::make('name')
