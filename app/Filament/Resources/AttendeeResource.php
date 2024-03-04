@@ -49,7 +49,10 @@ class AttendeeResource extends Resource {
 					})
 					->columnSpanFull()
 					->type('warning')
-					->content('The price is too high'),
+					->content(function (Forms\Get $get){
+						$price = $get('ticket_cost');
+						return 'This is ' . $price - 500 . ' more than the average ticket price';
+					}),
 				Forms\Components\TextInput::make('name')
 					->required()
 					->maxLength(255),
