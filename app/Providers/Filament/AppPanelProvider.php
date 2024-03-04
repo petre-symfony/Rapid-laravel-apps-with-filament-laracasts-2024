@@ -65,6 +65,11 @@ class AppPanelProvider extends PanelProvider {
 			])
 			->plugins([
 				EnvironmentIndicatorPlugin::make()
+					->color(fn () => match (app()->environment()) {
+						'production' => null,
+						'staging' => Color::Orange,
+						default => Color::Blue,
+					})
 			]);
 	}
 
