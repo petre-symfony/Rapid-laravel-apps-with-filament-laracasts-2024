@@ -7,6 +7,7 @@ use App\Filament\Resources\AttendeeResource\RelationManagers;
 use App\Filament\Resources\AttendeeResource\Widgets\AttendeeChartWidget;
 use App\Filament\Resources\AttendeeResource\Widgets\AttendeesStatsWidget;
 use App\Models\Attendee;
+use Awcodes\Shout\Components\Shout;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -42,6 +43,9 @@ class AttendeeResource extends Resource {
 	public static function form(Form $form): Form {
 		return $form
 			->schema([
+				Shout::make('warn-price')
+					->type('warning')
+					->content('The price is too high'),
 				Forms\Components\TextInput::make('name')
 					->required()
 					->maxLength(255),
@@ -50,6 +54,7 @@ class AttendeeResource extends Resource {
 					->required()
 					->maxLength(255),
 				Forms\Components\TextInput::make('ticket_cost')
+					->lazy()
 					->required()
 					->numeric(),
 				Forms\Components\Toggle::make('is_paid')
